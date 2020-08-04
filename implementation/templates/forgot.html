@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Forgotuserpass
+{% endblock %}
+
+{% block main %}
+    <h1 align="center">
+        Forgot your username or password?
+    </h1>
+    <form action="/forgot" method="post">
+        <div class="form-group">
+            <label>
+                If you forgot your username and/or password, enter your email below. After submitting this form,
+                You should expect to receive email shortly that will give you details on how to retrieve your
+                account information.
+                <input autocomplete="off" autofocus class="form-control" name="email" placeholder="Email" type="text" required>
+            </label>
+
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+
+{% endblock %}

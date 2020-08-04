@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Post
+{% endblock %}
+
+{% block main %}
+    <form action="/history">
+            <label for="claimhist">
+                <font color="#b70a01" size=10>
+                  Claim History
+                </font>
+                Below lists all of the claims you have made and the date you claimed them.
+                Scroll down to see your post history
+            </label>
+                <div class="col-sm" id="claimhist">
+                     <div class="row">
+                        {% for row in claims %}
+                            <div class="col-sm">
+                                <div class="card" style="width: 18rem;">
+                                    <img class="card-img-top" src= "{{ url_for('static',filename= 'images/' + row["image"])  }}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ row["name"] }}</h5>
+                                        <p class="card-text">Time claimed: {{ row["ptimestamp"] }}</p>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+
+            <label for="posthist">
+                <font color="green" size=10>
+                  Post History
+                </font>
+                Below lists all of the items you have posted--including all removed items--and the date you posted them.
+                Scroll up to see your claim history
+            </label>
+                <div class="col-sm">
+                     <div class="row">
+                        {% for row in posts %}
+                            <div class="col-sm" id="posthist">
+                                <div class="card" style="width: 18rem;">
+                                    <img class="card-img-top" src= "{{ url_for('static',filename= 'images/' + row["image"])  }}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ row["name"] }}</h5>
+                                        <p class="card-text">Time posted: {{ row["timestamp"] }}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+    </form>
+{% endblock %}

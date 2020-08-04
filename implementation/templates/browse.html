@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Browse
+{% endblock %}
+
+{% block main %}
+    <h1 align="center">
+        Browse
+    </h1>
+    <form action= "/browse" method="post">
+        <div class="row">
+            {% for row in rows %}
+                <div class="col-sm">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src= "{{ url_for('static',filename= 'images/' + row["image"])  }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ row["name"] }}</h5>
+                            <p class="card-text">{{ row["description"] }}</p>
+                        </div>
+
+                        <div class="card-body">
+                            <!-- where it says href, insert a claim button -->
+                            <button class="btn btn-primary" type="submit" name="submit" value="{{ row["id"] }}">Claim</button>
+                        </div>
+
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </form>
+{% endblock %}

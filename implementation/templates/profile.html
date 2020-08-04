@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block main %}
+    <h1 align="center">
+        Profile
+    </h1>
+    <form action="/profile" method="post">
+        <div class="form-group row">
+            <font size="5" color="#b70a01">
+                Username:
+            </font>
+            <font size="5">
+                {{ user[0]["username"] }}
+            </font>
+        </div>
+        <div class="form-group row">
+            <font size="5" color="#b70a01">
+                    Available ThrifTokens:
+                </font>
+                <font size="5">
+                    {{ user[0]["currency"] }}
+                </font>
+                <img src="static/images/ThrifToken.png" width="35" height="35">
+            </div>
+            <div class="form-group row">
+                <font size="5" color="#b70a01">
+                    Current active posts:
+                </font>
+            </div>
+
+            <div class="form-group row">
+                {{ active }}
+
+                {% for row in posts %}
+                    <div class="col-sm">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src= "{{ url_for('static',filename= 'images/' + row["image"])  }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ row["name"] }}</h5>
+                                <p class="card-text">{{ row["description"] }}</p>
+                            </div>
+
+                            <div class="card-body">
+                                <!-- where it says href, insert a claim button -->
+                                <button class="btn btn-primary" type="submit" name="submit" value="{{ row["id"] }}">Cancel Post</button>
+                            </div>
+
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+    </form>
+{% endblock %}

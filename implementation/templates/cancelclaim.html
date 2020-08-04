@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Apology
+{% endblock %}
+
+{% block main %}
+    <form action="/cancelclaim" method="post" enctype = "multipart/form-data">
+        Are you sure you want to cancel your request this item: {{ item["name"] }}?
+        <button class="btn btn-primary" type="submit">Cancel Claim</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <h1 align="center">
+        verify your account
+    </h1>
+    <form action="/verify" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text" required>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password" required>
+        </div>
+        <div>
+            <label>
+                Please insert the verification code sent to you in an email
+                <input autocomplete="off" autofocus class="form-control" name="vcode" placeholder="Verification code" type="text" required>
+            </label>
+        </div>
+        <button class="btn btn-primary" type="submit">Verify Account</button>
+    </form>
+        <script>
+        document.querySelector('form').onsubmit = function(e)
+        {
+            e.preventDefault();
+            $.get("/checkpass", {username: document.querySelector('input[name=username]').value,  password: document.querySelector('input[name=password]').value},
+                function(data){
+                    if(data)
+                    {
+                        document.querySelector('form').submit();
+                    }
+                    else
+                    {
+                        alert("invalid username or password");
+                        return false;
+                    }
+                });
+        };
+    </script>
+{% endblock %}
